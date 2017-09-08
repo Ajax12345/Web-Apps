@@ -1,0 +1,29 @@
+<html>
+ <body>
+   <h1>Hello</h1>
+   <p1 id="demo"></p1>
+   <h3 id = "practice"></h3>
+   <h4>My name is James</h4>
+
+   <script>
+   function do_stuff(){
+    //var s  = {{to_display}};
+    var text = document.getElementsByTagName("h4")[0].innerHTML; //gets content
+
+    var b = document.getElementById("practice");
+    document.getElementsByTagName("h4")[0].innerHTML = "HI how are you";
+
+
+    }
+    do_stuff();
+   </script>
+   <form action="/run_code"  method="post">
+      <textarea cols="25" rows="12" name = "code"></textarea>
+      <br />
+      <input type="submit" value="Submit now" />
+
+
+
+    </form>
+ </body>
+</html>
