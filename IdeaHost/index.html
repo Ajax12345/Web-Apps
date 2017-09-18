@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World</title>
+    </head>
+
+    <body>
+    <div class="app">
+
+
+      </div>
+
+      <!---
+      <form name="valform" action="" method="POST">
+        <input type="text" name="name" id="the_idea" value="enter your idea:"/>
+        <input type="button" name="submit" value="Save" onclick="getIdea()" />
+      </form>
+
+   <button type="button" onclick="retrieveIdea()">Click Me!</button>
+   <button type="button" onclick="playIdeas()">Play Ideas</button>
+   --->
+
+
+      <form>
+      <label>
+
+      <input type="What is the name" id="the_idea" />
+        <button onclick="getIdea()">Menu</button>
+      </label>
+
+
+<!--  <button>Tell me</button>
+<input type="text" required />-->
+
+      </form>
+
+
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="https://smtpjs.com/smtp.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+        function get_alert()
+        {
+          alert("Hi");
+        }
+        function getIdea()
+        {
+          var idea = document.getElementById("the_idea").value;
+          if (idea)
+          {
+            var total = localStorage.length;
+
+            localStorage.setItem(total+1, idea);
+          }
+          else
+          {
+            playIdeas();
+          }
+
+
+
+        }
+        function removeIdeas()
+        {
+
+        }
+        function retrieveIdea()
+        {
+          var new_data = localStorage.getItem(localStorage.length);
+          alert(new_data);
+        }
+        function listIdeas()
+        {
+          var final_ideas = "";
+          for (var i = 0; i <=localStorage.length; i++)
+          {
+            final_ideas += localStorage.getItem(i);
+            final_ideas += "\n";
+          }
+          return final_ideas;
+        }
+
+        function playIdeas()
+        {
+          for (var i = 1; i <=localStorage.length; i++)
+          {
+            var ideas = localStorage.getItem(i);
+            var msg = new SpeechSynthesisUtterance(ideas);
+            window.speechSynthesis.speak(msg);
+          }
+        }
+        function sendIdeas()
+        {
+          var total_ideas = listIdeas();
+          Email.send("jpetullo14@gmail.com",
+            "jpetullo14@gmail.com",
+              "Your ideasheet!",
+              total_ideas,
+              "smtp.gmail.com",
+              "James Petullo",
+              "Gobronxbombers2");
+
+            alert("sent!");
+        }
+
+
+
+
+    </script>
+</body>
+
+
+</html>
